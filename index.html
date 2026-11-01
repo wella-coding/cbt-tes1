@@ -49,7 +49,7 @@
             <div class="flex justify-between h-16 items-center">
                 <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('daftar')">
                     <div class="bg-gradient-to-tr from-emerald-700 via-teal-600 to-teal-500 text-white p-2.5 rounded-xl shadow-md">
-                        <i class="fa-solid me-0 fa-tablet-screen-button text-xl"></i>
+                        <i class="fa-solid fa-tablet-screen-button text-xl"></i>
                     </div>
                     <div>
                         <h1 class="font-bold text-slate-900 text-lg leading-tight">CBT iWork Abel</h1>
@@ -224,14 +224,11 @@
                     </form>
                 </div>
 
-                <!-- Hasil Cek Status Card (Dynamic) -->
-                <div id="status-result-card" class="hidden bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8">
-                    <!-- Dynamic Content by JS -->
-                </div>
+                <div id="status-result-card" class="hidden bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8"></div>
             </div>
         </section>
 
-        <!-- SECTION 3: LOGIN CBT (MASUKKAN TOKEN) -->
+        <!-- SECTION 3: LOGIN CBT -->
         <section id="sec-login-cbt" class="tab-content hidden">
             <div class="max-w-xl mx-auto">
                 <div class="bg-white rounded-2xl shadow-lg border border-slate-200 p-6 md:p-8">
@@ -280,14 +277,12 @@
 
         <!-- SECTION 4: INTERFACE UJIAN CBT ACTIVE -->
         <section id="sec-cbt-active" class="tab-content hidden">
-            <!-- Header Bar CBT -->
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4 sticky top-20 z-30">
                 <div>
                     <span id="cbt-badge-jenis" class="px-2.5 py-1 rounded-md text-xs font-bold bg-brand-100 text-brand-700">Tes Dasar</span>
-                    <h3 id="cbt-peserta-info" class="font-bold text-slate-900 text-base mt-1">Ahmad Zaky (X IPA 1)</h3>
+                    <h3 id="cbt-peserta-info" class="font-bold text-slate-900 text-base mt-1">Siswa</h3>
                 </div>
 
-                <!-- Timer & Finish Button -->
                 <div class="flex items-center space-x-4">
                     <div class="bg-slate-900 text-white px-4 py-2 rounded-xl flex items-center space-x-2 font-mono">
                         <i class="fa-regular fa-clock text-amber-400"></i>
@@ -300,28 +295,20 @@
                 </div>
             </div>
 
-            <!-- CBT Layout Grid -->
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
-                <!-- Question Area (Left 3 cols) -->
                 <div class="lg:col-span-3 space-y-6">
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8">
-                        <!-- Top Info Soal -->
                         <div class="flex justify-between items-center pb-4 mb-4 border-b border-slate-100">
                             <span class="text-sm font-bold text-slate-500" id="cbt-soal-number">Soal Nomor 1</span>
                             <span id="cbt-soal-app" class="px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-700">Aplikasi Pages</span>
                         </div>
 
-                        <!-- Question Text -->
                         <div class="mb-6">
                             <p id="cbt-question-text" class="text-base md:text-lg font-semibold text-slate-800 leading-relaxed"></p>
                         </div>
 
-                        <!-- Options List -->
-                        <div id="cbt-options-container" class="space-y-3">
-                            <!-- Options injected by JS -->
-                        </div>
+                        <div id="cbt-options-container" class="space-y-3"></div>
 
-                        <!-- Question Actions Footer -->
                         <div class="mt-8 pt-4 border-t border-slate-100 flex flex-wrap justify-between items-center gap-3">
                             <button id="btn-prev-soal" onclick="navigateSoal(-1)" class="px-4 py-2 rounded-xl border border-slate-300 font-semibold text-slate-600 hover:bg-slate-100 text-sm transition">
                                 <i class="fa-solid fa-arrow-left mr-1.5"></i>Sebelumnya
@@ -339,13 +326,10 @@
                     </div>
                 </div>
 
-                <!-- Navigation Grid (Right 1 col) -->
                 <div class="lg:col-span-1">
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sticky top-44">
                         <h4 class="font-bold text-slate-900 text-sm mb-3">Navigasi Nomor Soal</h4>
-                        <div id="cbt-nav-grid" class="grid grid-cols-5 gap-2 max-h-72 overflow-y-auto custom-scrollbar p-1">
-                            <!-- Injected Grid Buttons -->
-                        </div>
+                        <div id="cbt-nav-grid" class="grid grid-cols-5 gap-2 max-h-72 overflow-y-auto custom-scrollbar p-1"></div>
 
                         <div class="mt-4 pt-4 border-t border-slate-100 text-xs space-y-1.5 text-slate-600">
                             <div class="flex items-center space-x-2">
@@ -366,10 +350,9 @@
             </div>
         </section>
 
-        <!-- SECTION 5: HASIL TES & TRANSKRIP -->
+        <!-- SECTION 5: HASIL TES -->
         <section id="sec-hasil" class="tab-content hidden">
             <div class="max-w-4xl mx-auto space-y-6">
-                <!-- Banner Score -->
                 <div id="hasil-banner" class="rounded-3xl p-6 md:p-8 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
                     <div>
                         <span id="hasil-status-badge" class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-white/20">Status</span>
@@ -379,12 +362,11 @@
 
                     <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20 shrink-0 min-w-[160px]">
                         <span class="text-xs uppercase font-bold opacity-80">Nilai Akhir</span>
-                        <div id="hasil-score-display" class="text-5xl font-extrabold my-1">87.5</div>
+                        <div id="hasil-score-display" class="text-5xl font-extrabold my-1">0.0</div>
                         <span class="text-xs opacity-90">KKM: 75.0</span>
                     </div>
                 </div>
 
-                <!-- Rincian Identitas & Statistik -->
                 <div class="bg-white rounded-2xl border border-slate-200 p-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                     <div class="p-3 bg-slate-50 rounded-xl">
                         <span class="text-xs text-slate-500 font-medium">Nama Peserta</span>
@@ -404,14 +386,11 @@
                     </div>
                 </div>
 
-                <!-- Rincian Pembahasan Soal -->
                 <div class="bg-white rounded-2xl border border-slate-200 p-6">
                     <h3 class="font-bold text-slate-900 text-base mb-4 flex items-center">
                         <i class="fa-solid fa-list-check text-brand-600 mr-2"></i>Evaluasi Rincian Jawaban Per Soal
                     </h3>
-                    <div id="hasil-review-list" class="space-y-4 max-h-96 overflow-y-auto custom-scrollbar pr-2">
-                        <!-- Evaluasi Injected by JS -->
-                    </div>
+                    <div id="hasil-review-list" class="space-y-4 max-h-96 overflow-y-auto custom-scrollbar pr-2"></div>
                 </div>
 
                 <div class="flex justify-center">
@@ -422,10 +401,9 @@
             </div>
         </section>
 
-        <!-- SECTION 6: PORTAL ADMIN WAKA KESISWAAN (PROTECTED BY PASSWORD) -->
+        <!-- SECTION 6: PORTAL ADMIN WAKA KESISWAAN -->
         <section id="sec-admin" class="tab-content hidden">
             <div class="space-y-6">
-                <!-- Admin Header -->
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
                     <div>
                         <h2 class="text-xl font-bold text-slate-900 flex items-center">
@@ -443,13 +421,9 @@
                         <button onclick="adminLogout()" class="px-3 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold rounded-lg text-xs transition">
                             <i class="fa-solid fa-right-from-bracket mr-1"></i>Keluar Admin
                         </button>
-                        <button onclick="resetAllDemoData()" class="px-3 py-1.5 bg-rose-50 text-rose-600 hover:bg-rose-100 font-semibold rounded-lg text-xs transition">
-                            <i class="fa-solid fa-rotate-left mr-1"></i>Reset Demo Data
-                        </button>
                     </div>
                 </div>
 
-                <!-- Pendaftaran Management Table -->
                 <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
                     <div class="p-4 bg-slate-50 border-b border-slate-200 flex justify-between items-center">
                         <h3 class="font-bold text-slate-800 text-sm">Daftar Pengajuan Siswa</h3>
@@ -468,9 +442,7 @@
                                     <th class="p-3.5 text-center">Aksi Admin</th>
                                 </tr>
                             </thead>
-                            <tbody id="admin-table-body" class="divide-y divide-slate-200 font-medium">
-                                <!-- Injected by JS -->
-                            </tbody>
+                            <tbody id="admin-table-body" class="divide-y divide-slate-200 font-medium"></tbody>
                         </table>
                     </div>
                 </div>
@@ -479,7 +451,7 @@
 
     </main>
 
-    <!-- Modal Admin Authentication (Login Password Admin) -->
+    <!-- Modal Admin Auth -->
     <div id="modal-admin-login" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-100">
             <div class="text-center mb-5">
@@ -493,9 +465,7 @@
             <form onsubmit="handleAdminLogin(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">Password Admin</label>
-                    <div class="relative">
-                        <input type="password" id="admin-password-input" required placeholder="Masukkan password admin..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-amber-500">
-                    </div>
+                    <input type="password" id="admin-password-input" required placeholder="Masukkan password admin..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-amber-500">
                 </div>
 
                 <div class="flex space-x-2 pt-2">
@@ -515,11 +485,32 @@
         </div>
     </div>
 
-    <!-- Modal Admin Setujui (Set Token & Jadwal) -->
+    <!-- Modal Change Password Admin -->
+    <div id="modal-change-password" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-100">
+            <h3 class="text-lg font-bold text-slate-900 mb-2">Ubah Password Admin</h3>
+            <form onsubmit="handleChangePassword(event)" class="space-y-4 text-xs">
+                <div>
+                    <label class="block font-semibold text-slate-700 mb-1">Password Lama</label>
+                    <input type="password" id="old-pass-input" required class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block font-semibold text-slate-700 mb-1">Password Baru</label>
+                    <input type="password" id="new-pass-input" required class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div class="flex justify-end space-x-2 pt-2">
+                    <button type="button" onclick="closeChangePasswordModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl transition">Batal</button>
+                    <button type="submit" class="px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl shadow transition">Simpan Password Baru</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Admin Setujui -->
     <div id="modal-approve" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-100">
             <h3 class="text-lg font-bold text-slate-900 mb-2">Setujui Pendaftaran Tes</h3>
-            <p class="text-xs text-slate-500 mb-4" id="approve-siswa-name">Ahmad Zaky (X IPA 1)</p>
+            <p class="text-xs text-slate-500 mb-4" id="approve-siswa-name">Siswa</p>
 
             <form onsubmit="confirmApprove(event)" class="space-y-4 text-xs">
                 <input type="hidden" id="approve-id">
@@ -570,7 +561,7 @@
         </div>
     </div>
 
-    <!-- Custom Alert/Confirm Modal (Substitusi Alert) -->
+    <!-- Alert Modal Custom -->
     <div id="custom-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl text-center space-y-4">
             <div id="modal-icon" class="w-12 h-12 rounded-full mx-auto flex items-center justify-center text-xl"></div>
@@ -578,9 +569,7 @@
                 <h4 id="modal-title" class="font-bold text-slate-900 text-base">Informasi</h4>
                 <p id="modal-message" class="text-xs text-slate-600 mt-1 leading-relaxed"></p>
             </div>
-            <div id="modal-actions" class="flex justify-center space-x-2 pt-2">
-                <!-- Buttons injected by JS -->
-            </div>
+            <div id="modal-actions" class="flex justify-center space-x-2 pt-2"></div>
         </div>
     </div>
 
@@ -592,103 +581,682 @@
         </div>
     </footer>
 
-    <!-- FIREBASE INITIALIZATION SCRIPT -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, doc, setDoc, getDocs, onSnapshot, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // Global Firebase Configuration & State
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'cbt-ma-ashshiddiiqi';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' 
-            ? JSON.parse(__firebase_config) 
-            : {
-                apiKey: "AIzaSyDemoConfigKeyForCBTiWork1234567",
-                authDomain: "cbt-ma-ashshiddiiqi.firebaseapp.com",
-                projectId: "cbt-ma-ashshiddiiqi",
-                storageBucket: "cbt-ma-ashshiddiiqi.appspot.com",
-                messagingSenderId: "123456789012",
-                appId: "1:123456789012:web:abcdef1234567890"
-            };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        window.firebaseDB = db;
-        window.firebaseAppId = appId;
-        window.isCloudConnected = false;
-
-        // Path koleksi data publik sesuai aturan strictly `/artifacts/{appId}/public/data/{collectionName}`
-        const getPublicCollectionPath = (collName) => `artifacts/${appId}/public/data/${collName}`;
-
-        // Inisialisasi Otentikasi Firebase
-        async function initAuth() {
-            try {
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    await signInAnonymously(auth);
-                }
-            } catch (err) {
-                console.warn("Firebase Auth fallback to local mode:", err);
-            }
-        }
-
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                window.isCloudConnected = true;
-                listenCloudData();
-            }
-        });
-
-        // Real-time Cloud Listener
-        function listenCloudData() {
-            if (!auth.currentUser) return;
-            const regsRef = collection(db, 'artifacts', appId, 'public', 'data', 'registrations');
-            
-            onSnapshot(regsRef, (snapshot) => {
-                const cloudData = [];
-                snapshot.forEach((doc) => {
-                    cloudData.push({ id: doc.id, ...doc.data() });
-                });
-                
-                if (cloudData.length > 0) {
-                    window.dbRegistrations = cloudData;
-                    localStorage.setItem('cbt_iwork_regs', JSON.stringify(cloudData));
-                    if (typeof renderAdminTable === 'function') renderAdminTable();
-                }
-            }, (error) => {
-                console.error("Cloud Sync Error:", error);
-            });
-        }
-
-        // Helper global untuk menyimpan data ke Cloud Firestore
-        window.saveRegistrationToCloud = async function(regData) {
-            if (!auth.currentUser || !window.isCloudConnected) {
-                console.log("Saving locally (Offline mode)");
-                return;
-            }
-            try {
-                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'registrations', regData.id);
-                await setDoc(docRef, regData, { merge: true });
-            } catch (e) {
-                console.error("Gagal simpan ke Cloud:", e);
-            }
+    <!-- JAVASCRIPT CORE LOGIC -->
+    <script>
+        // Data Bank Soal Bawaan iWork & iPad Tools
+        const BANK_SOAL = {
+            pages: [
+                { id: "p1", app: "Pages", question: "Fitur manakah di Pages yang digunakan untuk mengatur margin halaman dan orientasi dokumen?", options: ["Inspector / Document Setup", "Format Menu", "Paragraph Styles", "Page Break"], answer: 0 },
+                { id: "p2", app: "Pages", question: "Untuk mengekspor dokumen Pages menjadi file PDF, menu apa yang harus dipilih?", options: ["Share > Export > PDF", "File > Save As PDF", "Edit > Convert to PDF", "Format > Export PDF"], answer: 0 },
+                { id: "p3", app: "Pages", question: "Bagaimana cara menyisipkan nomor halaman otomatis di bagian footer Pages?", options: ["Ketik angka manual di footer", "Klik area Footer lalu pilih Insert Page Number", "Gunakan menu Format Text", "Gunakan fitur Track Changes"], answer: 1 },
+                { id: "p4", app: "Pages", question: "Fitur 'Track Changes' pada Pages berfungsi untuk...", options: ["Melacak riwayat editan dan revisi dalam dokumen", "Menghitung jumlah kata otomatis", "Mengubah font secara massal", "Memeriksa tata bahasa otomatis"], answer: 0 },
+                { id: "p5", app: "Pages", question: "Untuk membuat daftar isi (Table of Contents) otomatis di Pages, syarat utamanya adalah...", options: ["Menggunakan Paragraph Styles (seperti Heading 1, Heading 2)", "Menulis judul dengan cetak tebal", "Membuat tabel manual di awal halaman", "Menambahkan penanda bookmark"], answer: 0 },
+                { id: "p6", app: "Pages", question: "Tombol pintas di iPad untuk memformat teks menjadi Bold adalah...", options: ["Cmd + B", "Cmd + I", "Cmd + U", "Cmd + Shift + B"], answer: 0 },
+                { id: "p7", app: "Pages", question: "Untuk meletakkan gambar bebas di tengah teks sehingga teks mengalir di sekitarnya, kita mengatur opsi...", options: ["Text Wrap (Wrap Around)", "Inline with Text", "Move with Text", "Background Mask"], answer: 0 },
+                { id: "p8", app: "Pages", question: "Ekstensi file bawaan dari aplikasi Pages adalah...", options: [".pages", ".docx", ".pdf", ".txt"], answer: 0 },
+                { id: "p9", app: "Pages", question: "Fitur 'Presenter Mode' di Pages berguna untuk...", options: ["Membaca dokumen seperti gulungan teks teleprompter", "Mengirim dokumen ke proyektor", "Mengunci file dengan kata sandi", "Memutar slide animasi"], answer: 0 },
+                { id: "p10", app: "Pages", question: "Bagaimana cara menambahkan komentar pada kata tertentu di Pages?", options: ["Pilih kata > pilih menu Comment", "Tekan spasi dua kali", "Gunakan Apple Pencil untuk mencoret", "Gunakan fitur Highlight saja"], answer: 0 }
+            ],
+            numbers: [
+                { id: "n1", app: "Numbers", question: "Rumus di Numbers yang digunakan untuk menjumlahkan sekumpulan angka dalam rentang sel adalah...", options: ["=SUM(cell_range)", "=TOTAL(cell_range)", "=ADD(cell_range)", "=COUNT(cell_range)"], answer: 0 },
+                { id: "n2", app: "Numbers", question: "Untuk menghitung nilai rata-rata dari sel A1 hingga A10, rumus yang benar adalah...", options: ["=AVERAGE(A1:A10)", "=MEAN(A1:A10)", "=AVG(A1:A10)", "=SUM(A1:A10)/10"], answer: 0 },
+                { id: "n3", app: "Numbers", question: "Fitur 'Conditional Highlighting' di Numbers berguna untuk...", options: ["Mengubah warna sel otomatis berdasarkan kriteria nilai tertentu", "Mewarnai seluruh tabel dengan satu warna", "Menyembunyikan baris kosong", "Mengurutkan data dari A ke Z"], answer: 0 },
+                { id: "n4", app: "Numbers", question: "Bagaimana cara membuat grafik (chart) dari data tabel di Numbers?", options: ["Pilih data sel > tekan tombol '+' > pilih menu Chart", "Klik File > Export Chart", "Ketik rumus =CHART()", "Buka menu Organize > Add Graph"], answer: 0 },
+                { id: "n5", app: "Numbers", question: "Fungsi dari 'Pivot Table' di Numbers adalah untuk...", options: ["Menganalisis dan merangkum kumpulan data besar secara dinamis", "Membuat tabel menjadi berwarna-warni", "Menghapus data ganda secara otomatis", "Mengunci lembar kerja"], answer: 0 },
+                { id: "n6", app: "Numbers", question: "Simbol yang harus ditulis pertama kali sebelum memasukkan rumus matematika di Numbers adalah...", options: ["=", "+", "@", "#"], answer: 0 },
+                { id: "n7", app: "Numbers", question: "Fungsi =IF(A1>=75, 'Lolos', 'Tidak Lolos') akan menghasilkan 'Lolos' jika nilai A1 adalah...", options: ["75 atau lebih besar", "Kurang dari 75", "Hanya angka 75 persis", "Angka di bawah 70"], answer: 0 },
+                { id: "n8", app: "Numbers", question: "Untuk menyaring (filter) baris data berdasarkan kriteria tertentu, kita menggunakan panel...", options: ["Organize > Filter", "Format > Table", "File > Sort", "Insert > Category"], answer: 0 },
+                { id: "n9", app: "Numbers", question: "Untuk membekukan (freeze) baris judul agar tetap terlihat saat di-scroll down, kita memilih...", options: ["Header Rows & Columns > Freeze", "Format > Lock Row", "View > Zoom", "Table > Protect"], answer: 0 },
+                { id: "n10", app: "Numbers", question: "Ekstensi file mentah dari dokumen aplikasi Numbers adalah...", options: [".numbers", ".xlsx", ".csv", ".pdf"], answer: 0 }
+            ],
+            keynote: [
+                { id: "k1", app: "Keynote", question: "Efek animasi perpindahan antar slide di Keynote disebut...", options: ["Transition", "Build In", "Build Out", "Magic Move"], answer: 0 },
+                { id: "k2", app: "Keynote", question: "Fitur canggih Keynote untuk menganimasikan objek yang sama bertransisi dengan mulus dari slide A ke slide B adalah...", options: ["Magic Move", "Object Motion", "Smart Transition", "Morphing"], answer: 0 },
+                { id: "k3", app: "Keynote", question: "Efek animasi untuk memasukkan objek ke dalam slide dinamakan...", options: ["Build In", "Build Out", "Action", "Transition"], answer: 0 },
+                { id: "k4", app: "Keynote", question: "Bagaimana cara merekam narasi suara presentasi di Keynote?", options: ["Media > Record Audio / Record Slide Show", "Format > Audio Level", "File > Voiceover", "Edit > Add Sound"], answer: 0 },
+                { id: "k5", app: "Keynote", question: "Fitur 'Presenter Display' berguna bagi pembicara untuk...", options: ["Melihat catatan (Presenter Notes), timer, dan slide berikutnya saat presentasi", "Menampilkan animasi khusus", "Mengunci proyektor", "Merekam wajah pembicara"], answer: 0 },
+                { id: "k6", app: "Keynote", question: "Untuk mengekspor presentasi menjadi file video bergerak, format export yang dipilih adalah...", options: ["Movie / Video (MP4/MOV)", "PDF", "Images", "Keynote Package"], answer: 0 },
+                { id: "k7", app: "Keynote", question: "Kombinasi warna dan tata letak bawaan untuk membuat slide terlihat profesional dinamakan...", options: ["Theme / Template", "Slide Master", "Object Style", "Color Palette"], answer: 0 },
+                { id: "k8", app: "Keynote", question: "Bagaimana cara menggabungkan beberapa bentuk (shapes) menjadi satu bentuk baru di Keynote?", options: ["Format > Arrange > Combine Shapes", "Group Items", "Merge Layer", "Lock Shape"], answer: 0 },
+                { id: "k9", app: "Keynote", question: "Fungsi fitur 'Light Table' di Keynote adalah...", options: ["Tampilan kisi-kisi untuk melihat dan mengatur urutan seluruh slide sekaligus", "Mengatur pencahayaan iPad", "Efek lampu sorot", "Mengubah warna latar belakang"], answer: 0 },
+                { id: "k10", app: "Keynote", question: "Ekstensi file bawaan dari aplikasi Keynote adalah...", options: [".key", ".pptx", ".pdf", ".mov"], answer: 0 }
+            ],
+            garageband: [
+                { id: "g1", app: "GarageBand", question: "Fitur di GarageBand yang menyediakan loop audio siap pakai dari berbagai instrumen dinamakan...", options: ["Apple Loops", "Sound Library", "Track Controls", "Live Loops"], answer: 0 },
+                { id: "g2", app: "GarageBand", question: "Warna hijau pada trak wilayah (region) GarageBand menandakan...", options: ["MIDI / Touch Instrument Region", "Audio Recording (Mikrofon)", "Drummer Region", "Master Effects"], answer: 0 },
+                { id: "g3", app: "GarageBand", question: "Instrumen cerdas yang memungkinkan pemula memainkan akord musik secara otomatis di GarageBand adalah...", options: ["Smart Instruments (Smart Guitar/Piano)", "Virtual DJ", "Autotune Keyboard", "Sampler"], answer: 0 },
+                { id: "g4", app: "GarageBand", question: "Untuk menyelaraskan tempo lagu yang kurang rapi di GarageBand, fitur yang digunakan adalah...", options: ["Quantization", "Metronome", "Equalizer", "Compressor"], answer: 0 },
+                { id: "g5", app: "GarageBand", question: "Format ekspor standar audio hasil akhir karya lagu di GarageBand adalah...", options: ["M4A / WAV / MP3", "MIDI", ".band", ".pdf"], answer: 0 }
+            ],
+            notes: [
+                { id: "nt1", app: "Notes", question: "Fitur di Apple Notes untuk memindai dokumen fisik menggunakan kamera iPad menjadi PDF adalah...", options: ["Scan Documents", "Take Photo", "Import File", "OCR Reader"], answer: 0 },
+                { id: "nt2", app: "Notes", question: "Bagaimana cara mengunci catatan rahasia di Apple Notes?", options: ["Tekan lama catatan > Lock Note (Password/Touch ID/Face ID)", "File > Password Protect", "Format > Secure", "Export to Encrypted PDF"], answer: 0 },
+                { id: "nt3", app: "Notes", question: "Fitur 'Quick Note' di iPad dapat diaktifkan dengan cara...", options: ["Menggeser dari pojok kanan bawah layar menggunakan Apple Pencil/Jari", "Mengetik tombol Power dua kali", "Membuka Control Center", "Menggoyang iPad"], answer: 0 }
+            ],
+            freeform: [
+                { id: "ff1", app: "Freeform", question: "Aplikasi Freeform di iPad dirancang khusus sebagai...", options: ["Kanvas putih tak terbatas (infinite canvas) untuk curah pendapat & kolaborasi", "Aplikasi pengedit foto profesional", "Pengolah kata seperti Pages", "Kalkulator grafik"], answer: 0 },
+                { id: "ff2", app: "Freeform", question: "Elemen apa saja yang BISA dimasukkan ke dalam papan Freeform?", options: ["Teks, Catatan Tempel (Sticky Notes), Gambar, File PDF, Tautan Web, & Coretan Pencil", "Hanya teks saja", "Hanya gambar JPG", "Hanya file audio"], answer: 0 }
+            ],
+            imovie: [
+                { id: "im1", app: "iMovie", question: "Fitur di iMovie yang menyediakan template garis besar cerita film beserta panduan pengambilan gambar dinamakan...", options: ["Storyboard / Storytelling Templates", "Magic Movie", "Trailer", "Green Screen"], answer: 0 },
+                { id: "im2", app: "iMovie", question: "Proses memotong klip video menjadi dua bagian terpisah di timeline iMovie disebut...", options: ["Split Clip", "Trim", "Cut Out", "Crop"], answer: 0 }
+            ]
         };
 
-        initAuth();
-    </script>
+        // Application State
+        let dbRegistrations = JSON.parse(localStorage.getItem('cbt_iwork_regs') || '[]');
+        let isAdminLoggedIn = false;
+        let activeTestState = null;
+        let testTimerInterval = null;
 
-    <!-- JAVASCRIPT APP LOGIC -->
-    <script>
-        // Synchronize helper: Simpan baik di localStorage maupun Firestore Cloud
+        function getAdminPassword() {
+            return localStorage.getItem('cbt_admin_password') || 'admin123';
+        }
+
         function saveState() {
             localStorage.setItem('cbt_iwork_regs', JSON.stringify(dbRegistrations));
             if (window.saveRegistrationToCloud) {
                 dbRegistrations.forEach(reg => {
                     window.saveRegistrationToCloud(reg);
                 });
+            }
+        }
+
+        // Navigation Tab Handler
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('text-brand-600', 'bg-slate-100', 'font-bold'));
+            
+            const targetSec = document.getElementById('sec-' + tabId);
+            if (targetSec) targetSec.classList.remove('hidden');
+
+            const navBtn = document.getElementById('nav-' + tabId);
+            if (navBtn) navBtn.classList.add('text-brand-600', 'bg-slate-100', 'font-bold');
+
+            // Close mobile menu on navigate
+            document.getElementById('mobile-menu').classList.add('hidden');
+
+            if (tabId === 'admin' && isAdminLoggedIn) {
+                renderAdminTable();
+            }
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        // UI Feedback Helpers
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            let bgBg = type === 'success' ? 'bg-emerald-600' : type === 'error' ? 'bg-rose-600' : 'bg-slate-900';
+            toast.className = `${bgBg} text-white px-4 py-3 rounded-xl shadow-xl text-xs font-semibold flex items-center space-x-2 transition duration-300 transform translate-x-5 opacity-0 pointer-events-auto`;
+            
+            let icon = type === 'success' ? 'fa-circle-check' : type === 'error' ? 'fa-triangle-exclamation' : 'fa-circle-info';
+            toast.innerHTML = `<i class="fa-solid ${icon}"></i><span>${message}</span>`;
+            
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-x-5', 'opacity-0');
+            }, 50);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-x-5');
+                setTimeout(() => toast.remove(), 300);
+            }, 4000);
+        }
+
+        function showCustomAlert(title, message, iconClass = 'fa-circle-info text-brand-600 bg-brand-50') {
+            const modal = document.getElementById('custom-modal');
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-message').innerText = message;
+            
+            const iconEl = document.getElementById('modal-icon');
+            iconEl.className = `w-12 h-12 rounded-full mx-auto flex items-center justify-center text-xl ${iconClass}`;
+            iconEl.innerHTML = `<i class="fa-solid ${iconClass.split(' ')[0]}"></i>`;
+
+            document.getElementById('modal-actions').innerHTML = `
+                <button onclick="closeCustomModal()" class="px-5 py-2 bg-slate-900 text-white rounded-xl font-bold text-xs">Mengerti</button>
+            `;
+            modal.classList.remove('hidden');
+        }
+
+        function closeCustomModal() {
+            document.getElementById('custom-modal').classList.add('hidden');
+        }
+
+        // Pendaftaran Logic
+        function updateInfoLevel() {
+            const levelVal = document.getElementById('reg-level').value;
+            const infoBox = document.getElementById('info-jenis-tes');
+            
+            if (!levelVal) {
+                infoBox.classList.add('hidden');
+                return;
+            }
+
+            infoBox.classList.remove('hidden');
+            const titleEl = document.getElementById('info-tes-title');
+            const descEl = document.getElementById('info-tes-desc');
+            const badgesEl = document.getElementById('info-tes-badges');
+
+            if (levelVal === "2") {
+                titleEl.innerText = "Kenaikan Level 2 → Level 3 (Jenis: Tes Dasar)";
+                descEl.innerText = "Materi ujian mencakup 3 aplikasi utama iPad iWork dengan durasi pengerjaan ± 18 menit 45 detik.";
+                badgesEl.innerHTML = `
+                    <span class="px-2 py-1 bg-white border border-slate-200 rounded">30 Soal</span>
+                    <span class="px-2 py-1 bg-white border border-slate-200 rounded">Pages</span>
+                    <span class="px-2 py-1 bg-white border border-slate-200 rounded">Numbers</span>
+                    <span class="px-2 py-1 bg-white border border-slate-200 rounded">Keynote</span>
+                `;
+            } else {
+                titleEl.innerText = "Kenaikan Level 3 → Level 4 (Jenis: Tes Lanjut)";
+                descEl.innerText = "Materi ujian diacak otomatis oleh sistem sebanyak 4 dari 7 aplikasi dengan durasi 25 menit.";
+                badgesEl.innerHTML = `
+                    <span class="px-2 py-1 bg-white border border-slate-200 rounded">40 Soal</span>
+                    <span class="px-2 py-1 bg-white border border-slate-200 rounded">4 Aplikasi Random</span>
+                    <span class="px-2 py-1 bg-white border border-slate-200 rounded">Pages, Numbers, Keynote, GarageBand, Notes, Freeform, iMovie</span>
+                `;
+            }
+        }
+
+        function handleDaftar(e) {
+            e.preventDefault();
+            const nama = document.getElementById('reg-nama').value.trim();
+            const kelas = document.getElementById('reg-kelas').value;
+            const level = document.getElementById('reg-level').value;
+
+            // Check duplicate
+            const existing = dbRegistrations.find(r => r.nama.toLowerCase() === nama.toLowerCase() && r.kelas === kelas && r.levelCurrent === level);
+            if (existing) {
+                showCustomAlert("Sudah Terdaftar", `Pendaftaran atas nama ${nama} (${kelas}) untuk Kenaikan Level ${level} sudah tercatat sebelumnya dengan status: ${existing.status}.`, 'fa-triangle-exclamation text-amber-600 bg-amber-50');
+                return;
+            }
+
+            const newReg = {
+                id: 'REG-' + Date.now().toString(36).toUpperCase(),
+                nama: nama,
+                kelas: kelas,
+                levelCurrent: level,
+                jenisTes: level === "2" ? "Tes Dasar" : "Tes Lanjut",
+                totalSoal: level === "2" ? 30 : 40,
+                durasiMenit: level === "2" ? 18.75 : 25,
+                tglDaftar: new Date().toLocaleString('id-ID'),
+                status: 'MENUNGGU',
+                token: null,
+                waktuMulai: null,
+                waktuSelesai: null,
+                alasanPenolakan: null,
+                hasilTes: null
+            };
+
+            dbRegistrations.unshift(newReg);
+            saveState();
+
+            document.getElementById('form-pendaftaran').reset();
+            document.getElementById('info-jenis-tes').classList.add('hidden');
+
+            showCustomAlert("Pendaftaran Berhasil!", `Pendaftaran ${nama} telah tercatat. Silakan cek halaman 'Cek Status & Token' secara berkala untuk mendapatkan kode token ujian setelah disetujui Waka Edutech.`, 'fa-circle-check text-emerald-600 bg-emerald-50');
+            
+            // Auto navigate
+            document.getElementById('cek-nama').value = nama;
+            document.getElementById('cek-kelas').value = kelas;
+            switchTab('status');
+            triggerCekStatus(nama, kelas);
+        }
+
+        // Cek Status Logic
+        function handleCekStatus(e) {
+            e.preventDefault();
+            const nama = document.getElementById('cek-nama').value.trim();
+            const kelas = document.getElementById('cek-kelas').value;
+            triggerCekStatus(nama, kelas);
+        }
+
+        function triggerCekStatus(nama, kelas) {
+            const card = document.getElementById('status-result-card');
+            card.classList.remove('hidden');
+
+            const match = dbRegistrations.find(r => r.nama.toLowerCase() === nama.toLowerCase() && r.kelas === kelas);
+
+            if (!match) {
+                card.innerHTML = `
+                    <div class="text-center py-6">
+                        <div class="w-12 h-12 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fa-solid fa-folder-open text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-base">Data Pendaftaran Tidak Ditemukan</h3>
+                        <p class="text-xs text-slate-500 mt-1">Pastikan penulisan nama dan kelas sama persis saat Anda mendaftar.</p>
+                        <button onclick="switchTab('daftar')" class="mt-4 px-4 py-2 bg-brand-600 text-white font-semibold text-xs rounded-xl">Daftar Sekarang</button>
+                    </div>
+                `;
+                return;
+            }
+
+            let statusBadge = '';
+            let detailsContent = '';
+
+            if (match.status === 'MENUNGGU') {
+                statusBadge = `<span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-700"><i class="fa-solid fa-hourglass-half mr-1"></i>MENUNGGU PERSETUJUAN</span>`;
+                detailsContent = `
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Pendaftaran Anda sedang diverifikasi oleh Waka Kesiswaan/Edutech. Kode token dan jadwal ujian akan diterbitkan setelah pendaftaran disetujui.
+                    </p>
+                `;
+            } else if (match.status === 'DISETUJUI') {
+                statusBadge = `<span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-700"><i class="fa-solid fa-circle-check mr-1"></i>DISETUJUI</span>`;
+                
+                const now = new Date();
+                const start = new Date(match.waktuMulai);
+                const end = new Date(match.waktuSelesai);
+                let timeStatusNote = '';
+
+                if (now < start) {
+                    timeStatusNote = `<span class="text-amber-600 font-semibold"><i class="fa-solid fa-clock mr-1"></i>Token belum aktif. Ujian baru dapat dimulai pada jadwal yang ditentukan.</span>`;
+                } else if (now > end) {
+                    timeStatusNote = `<span class="text-rose-600 font-semibold"><i class="fa-solid fa-circle-xmark mr-1"></i>Jadwal token telah kedaluwarsa.</span>`;
+                } else {
+                    timeStatusNote = `<span class="text-emerald-600 font-bold"><i class="fa-solid fa-bolt mr-1"></i>Token Aktif Sekarang! Silakan masuk ke menu Masuk Tes CBT.</span>`;
+                }
+
+                detailsContent = `
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-3">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-3">
+                            <div>
+                                <span class="text-[11px] font-semibold text-slate-500 uppercase">Kode Token Ujian Anda</span>
+                                <div class="text-2xl font-mono font-extrabold text-brand-700 tracking-wider">${match.token}</div>
+                            </div>
+                            <button onclick="copyToken('${match.token}')" class="px-3 py-1.5 bg-white border border-slate-300 hover:bg-slate-100 text-slate-700 font-semibold text-xs rounded-lg shadow-sm flex items-center justify-center">
+                                <i class="fa-regular fa-copy mr-1.5"></i>Salin Token
+                            </button>
+                        </div>
+                        <div class="text-xs text-slate-700 space-y-1">
+                            <div><strong>Waktu Ujian:</strong> ${new Date(match.waktuMulai).toLocaleString('id-ID')} s/d ${new Date(match.waktuSelesai).toLocaleString('id-ID')}</div>
+                            <div class="pt-1">${timeStatusNote}</div>
+                        </div>
+                    </div>
+                `;
+            } else if (match.status === 'DITOLAK') {
+                statusBadge = `<span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-700"><i class="fa-solid fa-circle-xmark mr-1"></i>DITOLAK</span>`;
+                detailsContent = `
+                    <div class="bg-rose-50 border border-rose-200 rounded-xl p-4 text-xs text-rose-900">
+                        <strong>Alasan Penolakan:</strong>
+                        <p class="mt-1">${match.alasanPenolakan || 'Tidak memenuhi ketentuan syarat kenaikan level.'}</p>
+                        <p class="mt-2 text-slate-600">Silakan hubungi Waka Kesiswaan/Edutech untuk klarifikasi lebih lanjut.</p>
+                    </div>
+                `;
+            }
+
+            card.innerHTML = `
+                <div class="space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-4">
+                        <div>
+                            <span class="text-xs text-slate-400 font-medium">ID Registrasi: ${match.id}</span>
+                            <h3 class="font-bold text-slate-900 text-lg">${match.nama}</h3>
+                            <p class="text-xs text-slate-500 font-medium">${match.kelas} &bull; Kenaikan Level ${match.levelCurrent} → ${parseInt(match.levelCurrent)+1} (${match.jenisTes})</p>
+                        </div>
+                        <div>${statusBadge}</div>
+                    </div>
+                    ${detailsContent}
+                </div>
+            `;
+        }
+
+        function copyToken(token) {
+            navigator.clipboard.writeText(token);
+            showToast("Kode token berhasil disalin!", "success");
+        }
+
+        // CBT Exam Logic
+        function handleStartTest(e) {
+            e.preventDefault();
+            const nama = document.getElementById('cbt-nama').value.trim();
+            const kelas = document.getElementById('cbt-kelas').value;
+            const token = document.getElementById('cbt-token').value.trim().toUpperCase();
+
+            const match = dbRegistrations.find(r => r.nama.toLowerCase() === nama.toLowerCase() && r.kelas === kelas && r.token === token);
+
+            if (!match) {
+                showCustomAlert("Akses Gagal", "Kode Token, Nama, atau Kelas tidak sesuai data pendaftaran yang disetujui.", "fa-circle-xmark text-rose-600 bg-rose-50");
+                return;
+            }
+
+            if (match.status !== 'DISETUJUI') {
+                showCustomAlert("Akses Ditolak", "Pendaftaran Anda belum dalam status DISETUJUI.", "fa-circle-xmark text-rose-600 bg-rose-50");
+                return;
+            }
+
+            const now = new Date();
+            const start = new Date(match.waktuMulai);
+            const end = new Date(match.waktuSelesai);
+
+            if (now < start) {
+                showCustomAlert("Token Belum Aktif", `Token ujian Anda baru aktif pada jadwal: ${start.toLocaleString('id-ID')}`, "fa-clock text-amber-600 bg-amber-50");
+                return;
+            }
+
+            if (now > end) {
+                showCustomAlert("Token Kedaluwarsa", "Maaf, rentang jadwal pelaksanaan ujian Anda telah berakhir.", "fa-circle-xmark text-rose-600 bg-rose-50");
+                return;
+            }
+
+            // Generate Questions Set
+            let questions = [];
+            if (match.jenisTes === "Tes Dasar") {
+                // 30 soal (Pages: 10, Numbers: 10, Keynote: 10)
+                questions = [
+                    ...BANK_SOAL.pages.slice(0, 10),
+                    ...BANK_SOAL.numbers.slice(0, 10),
+                    ...BANK_SOAL.keynote.slice(0, 10)
+                ];
+            } else {
+                // 40 soal (4 aplikasi diacak dari 7 aplikasi x 10 soal)
+                const allApps = ['pages', 'numbers', 'keynote', 'garageband', 'notes', 'freeform', 'imovie'];
+                const shuffledApps = allApps.sort(() => 0.5 - Math.random()).slice(0, 4);
+                
+                shuffledApps.forEach(appKey => {
+                    if (BANK_SOAL[appKey]) {
+                        questions.push(...BANK_SOAL[appKey].slice(0, 10));
+                    }
+                });
+
+                // Fill fallback if short
+                while (questions.length < 40) {
+                    questions.push(BANK_SOAL.pages[0]);
+                }
+            }
+
+            // Shuffle Questions Order
+            questions = questions.sort(() => 0.5 - Math.random());
+
+            activeTestState = {
+                registrationId: match.id,
+                nama: match.nama,
+                kelas: match.kelas,
+                jenisTes: match.jenisTes,
+                totalSoal: questions.length,
+                durasiMenit: match.durasiMenit,
+                questions: questions,
+                userAnswers: new Array(questions.length).fill(null),
+                raguState: new Array(questions.length).fill(false),
+                currentIndex: 0,
+                timeRemainingSeconds: Math.floor(match.durasiMenit * 60),
+                startTime: new Date()
+            };
+
+            initCBTInterface();
+        }
+
+        function initCBTInterface() {
+            switchTab('cbt-active');
+            document.getElementById('cbt-badge-jenis').innerText = activeTestState.jenisTes;
+            document.getElementById('cbt-peserta-info').innerText = `${activeTestState.nama} (${activeTestState.kelas})`;
+
+            renderCBTQuestion();
+            renderCBTNavGrid();
+            startCBTTimer();
+        }
+
+        function renderCBTQuestion() {
+            const idx = activeTestState.currentIndex;
+            const q = activeTestState.questions[idx];
+
+            document.getElementById('cbt-soal-number').innerText = `Soal Nomor ${idx + 1} dari ${activeTestState.totalSoal}`;
+            document.getElementById('cbt-soal-app').innerText = `Aplikasi ${q.app}`;
+            document.getElementById('cbt-question-text').innerText = q.question;
+
+            const optionsContainer = document.getElementById('cbt-options-container');
+            optionsContainer.innerHTML = '';
+
+            const alphabet = ['A', 'B', 'C', 'D'];
+            q.options.forEach((opt, optIdx) => {
+                const isSelected = activeTestState.userAnswers[idx] === optIdx;
+                const optBtn = document.createElement('button');
+                optBtn.className = `w-full text-left p-4 rounded-xl border font-medium text-sm transition flex items-center justify-between ${
+                    isSelected ? 'border-brand-500 bg-brand-50 text-brand-900 ring-2 ring-brand-500' : 'border-slate-200 hover:bg-slate-50 text-slate-700'
+                }`;
+                optBtn.onclick = () => selectAnswer(optIdx);
+
+                optBtn.innerHTML = `
+                    <div class="flex items-center space-x-3">
+                        <span class="w-7 h-7 rounded-lg flex items-center justify-center font-bold text-xs shrink-0 ${
+                            isSelected ? 'bg-brand-600 text-white' : 'bg-slate-100 text-slate-600'
+                        }">${alphabet[optIdx]}</span>
+                        <span class="leading-relaxed">${opt}</span>
+                    </div>
+                    ${isSelected ? '<i class="fa-solid fa-circle-check text-brand-600 text-base"></i>' : ''}
+                `;
+                optionsContainer.appendChild(optBtn);
+            });
+
+            // Update Checkbox Ragu
+            document.getElementById('cbt-ragu-checkbox').checked = activeTestState.raguState[idx];
+
+            // Update Nav Prev/Next Buttons
+            document.getElementById('btn-prev-soal').disabled = idx === 0;
+            document.getElementById('btn-prev-soal').classList.toggle('opacity-50', idx === 0);
+
+            const isLast = idx === activeTestState.totalSoal - 1;
+            document.getElementById('btn-next-soal').innerHTML = isLast 
+                ? 'Selesai / Review<i class="fa-solid fa-check-double ml-1.5"></i>' 
+                : 'Selanjutnya<i class="fa-solid fa-arrow-right ml-1.5"></i>';
+        }
+
+        function selectAnswer(optIdx) {
+            const idx = activeTestState.currentIndex;
+            activeTestState.userAnswers[idx] = optIdx;
+            renderCBTQuestion();
+            renderCBTNavGrid();
+        }
+
+        function toggleRaguRagu() {
+            const idx = activeTestState.currentIndex;
+            activeTestState.raguState[idx] = document.getElementById('cbt-ragu-checkbox').checked;
+            renderCBTNavGrid();
+        }
+
+        function navigateSoal(step) {
+            const newIndex = activeTestState.currentIndex + step;
+            if (newIndex >= 0 && newIndex < activeTestState.totalSoal) {
+                activeTestState.currentIndex = newIndex;
+                renderCBTQuestion();
+                renderCBTNavGrid();
+            }
+        }
+
+        function jumpToSoal(index) {
+            activeTestState.currentIndex = index;
+            renderCBTQuestion();
+            renderCBTNavGrid();
+        }
+
+        function renderCBTNavGrid() {
+            const grid = document.getElementById('cbt-nav-grid');
+            grid.innerHTML = '';
+
+            for (let i = 0; i < activeTestState.totalSoal; i++) {
+                const isCurrent = activeTestState.currentIndex === i;
+                const isAnswered = activeTestState.userAnswers[i] !== null;
+                const isRagu = activeTestState.raguState[i];
+
+                let bgClass = 'bg-slate-100 text-slate-700 border-slate-200';
+                if (isRagu) {
+                    bgClass = 'bg-amber-400 text-slate-900 font-bold border-amber-500';
+                } else if (isAnswered) {
+                    bgClass = 'bg-brand-600 text-white font-bold border-brand-700';
+                }
+
+                if (isCurrent) {
+                    bgClass += ' ring-2 ring-offset-1 ring-slate-900';
+                }
+
+                const btn = document.createElement('button');
+                btn.className = `h-9 rounded-lg text-xs font-semibold flex items-center justify-center border transition ${bgClass}`;
+                btn.innerText = i + 1;
+                btn.onclick = () => jumpToSoal(i);
+                grid.appendChild(btn);
+            }
+        }
+
+        function startCBTTimer() {
+            clearInterval(testTimerInterval);
+            updateTimerDisplay();
+
+            testTimerInterval = setInterval(() => {
+                activeTestState.timeRemainingSeconds--;
+                updateTimerDisplay();
+
+                if (activeTestState.timeRemainingSeconds <= 0) {
+                    clearInterval(testTimerInterval);
+                    showToast("Waktu Ujian Habis! Sistem otomatis men-submit jawaban Anda.", "error");
+                    submitTest(true);
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const secs = activeTestState.timeRemainingSeconds;
+            const h = Math.floor(secs / 3600);
+            const m = Math.floor((secs % 3600) / 60);
+            const s = secs % 60;
+
+            const format = [
+                h > 0 ? String(h).padStart(2, '0') : null,
+                String(m).padStart(2, '0'),
+                String(s).padStart(2, '0')
+            ].filter(Boolean).join(':');
+
+            document.getElementById('cbt-timer').innerText = format;
+        }
+
+        function confirmSubmitTest() {
+            const unanswered = activeTestState.userAnswers.filter(a => a === null).length;
+            const raguCount = activeTestState.raguState.filter(r => r).length;
+
+            let warningMsg = "Apakah Anda yakin ingin menyelesaikan tes ini sekarang?";
+            if (unanswered > 0 || raguCount > 0) {
+                warningMsg = `Masih ada ${unanswered} soal belum dijawab dan ${raguCount} soal ragu-ragu. Yakin ingin mengumpulkan tes?`;
+            }
+
+            const modal = document.getElementById('custom-modal');
+            document.getElementById('modal-title').innerText = "Konfirmasi Selesaikan Tes";
+            document.getElementById('modal-message').innerText = warningMsg;
+            
+            const iconEl = document.getElementById('modal-icon');
+            iconEl.className = "w-12 h-12 rounded-full mx-auto flex items-center justify-center text-xl bg-amber-50 text-amber-600";
+            iconEl.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i>`;
+
+            document.getElementById('modal-actions').innerHTML = `
+                <button onclick="closeCustomModal()" class="px-4 py-2 bg-slate-100 text-slate-700 rounded-xl font-semibold text-xs">Periksa Kembali</button>
+                <button onclick="closeCustomModal(); submitTest(false);" class="px-4 py-2 bg-emerald-600 text-white rounded-xl font-bold text-xs shadow">Ya, Kumpulkan</button>
+            `;
+            modal.classList.remove('hidden');
+        }
+
+        function submitTest(isAutoSubmit = false) {
+            clearInterval(testTimerInterval);
+
+            // Calculate Score
+            let correctAnswers = 0;
+            activeTestState.questions.forEach((q, idx) => {
+                if (activeTestState.userAnswers[idx] === q.answer) {
+                    correctAnswers++;
+                }
+            });
+
+            const finalScore = parseFloat(((correctAnswers / activeTestState.totalSoal) * 100).toFixed(1));
+            const isLolos = finalScore >= 75.0;
+
+            const endTime = new Date();
+            const elapsedSecs = Math.floor((endTime - activeTestState.startTime) / 1000);
+            const durationFormatted = `${Math.floor(elapsedSecs / 60)}m ${elapsedSecs % 60}s`;
+
+            const testResult = {
+                nilai: finalScore,
+                totalBenar: correctAnswers,
+                totalSoal: activeTestState.totalSoal,
+                isLolos: isLolos,
+                durasiPengerjaan: durationFormatted,
+                tglSelesai: endTime.toLocaleString('id-ID'),
+                questions: activeTestState.questions,
+                userAnswers: activeTestState.userAnswers
+            };
+
+            // Update registration in local DB
+            const regIndex = dbRegistrations.findIndex(r => r.id === activeTestState.registrationId);
+            if (regIndex !== -1) {
+                dbRegistrations[regIndex].hasilTes = testResult;
+                saveState();
+            }
+
+            renderHasilTes(activeTestState, testResult);
+            switchTab('hasil');
+        }
+
+        function renderHasilTes(state, result) {
+            const banner = document.getElementById('hasil-banner');
+            const badge = document.getElementById('hasil-status-badge');
+            const title = document.getElementById('hasil-status-title');
+            const subtitle = document.getElementById('hasil-status-subtitle');
+
+            if (result.isLolos) {
+                banner.className = "rounded-3xl p-6 md:p-8 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 bg-gradient-to-r from-emerald-700 to-teal-800";
+                badge.className = "px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-500/30 text-emerald-100 border border-emerald-400/30";
+                badge.innerText = "STATUS: LOLOS";
+                title.innerText = "SELAMAT! ANDA LOLOS";
+                subtitle.innerText = "Selamat, nilai Anda memenuhi KKM. Level penggunaan Abel Anda resmi dinaikkan.";
+            } else {
+                banner.className = "rounded-3xl p-6 md:p-8 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 bg-gradient-to-r from-rose-700 to-amber-800";
+                badge.className = "px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-rose-500/30 text-rose-100 border border-rose-400/30";
+                badge.innerText = "STATUS: TIDAK LOLOS";
+                title.innerText = "MOHON MAAF, BELUM LOLOS";
+                subtitle.innerText = "Nilai Anda belum mencapai KKM (75.0). Silakan berkonsultasi dengan Waka Edutech untuk pengajuan tes ulang.";
+            }
+
+            document.getElementById('hasil-score-display').innerText = result.nilai.toFixed(1);
+            document.getElementById('hasil-nama').innerText = state.nama;
+            document.getElementById('hasil-jenis').innerText = state.jenisTes;
+            document.getElementById('hasil-benar').innerText = `${result.totalBenar} / ${result.totalSoal} Soal`;
+            document.getElementById('hasil-durasi').innerText = result.durasiPengerjaan;
+
+            // Render Pembahasan Soal
+            const reviewList = document.getElementById('hasil-review-list');
+            reviewList.innerHTML = '';
+            const alphabet = ['A', 'B', 'C', 'D'];
+
+            state.questions.forEach((q, idx) => {
+                const userAns = state.userAnswers[idx];
+                const isCorrect = userAns === q.answer;
+
+                const item = document.createElement('div');
+                item.className = `p-4 rounded-xl border text-xs space-y-2 ${isCorrect ? 'border-emerald-200 bg-emerald-50/50' : 'border-rose-200 bg-rose-50/50'}`;
+                
+                item.innerHTML = `
+                    <div class="flex justify-between items-start font-bold">
+                        <span class="text-slate-800">#${idx + 1} (${q.app})</span>
+                        <span class="${isCorrect ? 'text-emerald-700' : 'text-rose-700'} font-bold">
+                            <i class="fa-solid ${isCorrect ? 'fa-check-circle' : 'fa-circle-xmark'} mr-1"></i>
+                            ${isCorrect ? 'Benar' : 'Salah'}
+                        </span>
+                    </div>
+                    <p class="font-medium text-slate-700">${q.question}</p>
+                    <div class="pt-1 text-slate-600 space-y-1">
+                        <div>Jawaban Anda: <strong class="${isCorrect ? 'text-emerald-700' : 'text-rose-700'}">${userAns !== null ? alphabet[userAns] + '. ' + q.options[userAns] : 'Tidak dijawab'}</strong></div>
+                        ${!isCorrect ? `<div>Jawaban Kunci: <strong class="text-emerald-700">${alphabet[q.answer]}. ${q.options[q.answer]}</strong></div>` : ''}
+                    </div>
+                `;
+                reviewList.appendChild(item);
+            });
+        }
+
+        // Admin Management Logic
+        function openAdminAuth() {
+            if (isAdminLoggedIn) {
+                switchTab('admin');
+            } else {
+                document.getElementById('modal-admin-login').classList.remove('hidden');
             }
         }
 
@@ -707,7 +1275,7 @@
                 showToast("Berhasil login sebagai Admin Waka Kesiswaan", "success");
                 switchTab('admin');
             } else {
-                showCustomAlert("Akses Ditolak", "Password admin salah. Password bawaan domain baru adalah: admin123");
+                showCustomAlert("Akses Ditolak", "Password admin salah. Password bawaan default: admin123");
             }
         }
 
@@ -717,4 +1285,188 @@
         }
 
         function openChangePasswordModal() {
-<!-- ... existing code -->
+            document.getElementById('modal-change-password').classList.remove('hidden');
+        }
+
+        function closeChangePasswordModal() {
+            document.getElementById('modal-change-password').classList.add('hidden');
+        }
+
+        function handleChangePassword(e) {
+            e.preventDefault();
+            const oldP = document.getElementById('old-pass-input').value.trim();
+            const newP = document.getElementById('new-pass-input').value.trim();
+
+            if (oldP !== getAdminPassword()) {
+                showCustomAlert("Gagal", "Password lama yang Anda masukkan salah.", "fa-circle-xmark text-rose-600 bg-rose-50");
+                return;
+            }
+
+            localStorage.setItem('cbt_admin_password', newP);
+            closeChangePasswordModal();
+            showToast("Password Admin berhasil diperbarui!", "success");
+        }
+
+        function adminLogout() {
+            isAdminLoggedIn = false;
+            switchTab('daftar');
+            showToast("Anda telah keluar dari Portal Admin");
+        }
+
+        function renderAdminTable() {
+            const tbody = document.getElementById('admin-table-body');
+            tbody.innerHTML = '';
+
+            document.getElementById('admin-count-total').innerText = dbRegistrations.length;
+
+            if (dbRegistrations.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="text-center p-8 text-slate-400">Belum ada pengajuan pendaftaran siswa.</td>
+                    </tr>
+                `;
+                return;
+            }
+
+            dbRegistrations.forEach(r => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 transition";
+
+                let statusBadge = '';
+                if (r.status === 'MENUNGGU') statusBadge = '<span class="px-2.5 py-1 rounded-md bg-amber-100 text-amber-800 font-bold">MENUNGGU</span>';
+                else if (r.status === 'DISETUJUI') statusBadge = '<span class="px-2.5 py-1 rounded-md bg-emerald-100 text-emerald-800 font-bold">DISETUJUI</span>';
+                else if (r.status === 'DITOLAK') statusBadge = '<span class="px-2.5 py-1 rounded-md bg-rose-100 text-rose-800 font-bold">DITOLAK</span>';
+
+                let tokenJadwalInfo = '-';
+                if (r.status === 'DISETUJUI') {
+                    tokenJadwalInfo = `
+                        <div class="font-mono font-bold text-brand-700">${r.token}</div>
+                        <div class="text-[10px] text-slate-500">${new Date(r.waktuMulai).toLocaleDateString('id-ID')} (${new Date(r.waktuMulai).toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'})} - ${new Date(r.waktuSelesai).toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'})})</div>
+                    `;
+                } else if (r.status === 'DITOLAK') {
+                    tokenJadwalInfo = `<span class="text-rose-500 text-[11px]">${r.alasanPenolakan || 'Ditolak'}</span>`;
+                }
+
+                let nilaiInfo = '<span class="text-slate-400">Belum Tes</span>';
+                if (r.hasilTes) {
+                    const passClass = r.hasilTes.isLolos ? 'text-emerald-600' : 'text-rose-600';
+                    nilaiInfo = `
+                        <div class="font-bold text-sm ${passClass}">${r.hasilTes.nilai.toFixed(1)}</div>
+                        <span class="text-[10px] uppercase font-bold ${passClass}">${r.hasilTes.isLolos ? 'LOLOS' : 'TIDAK LOLOS'}</span>
+                    `;
+                }
+
+                tr.innerHTML = `
+                    <td class="p-3.5">
+                        <div class="font-bold text-slate-900">${r.nama}</div>
+                        <div class="text-[11px] text-slate-500">${r.kelas}</div>
+                    </td>
+                    <td class="p-3.5">
+                        <div class="font-semibold text-slate-800">Level ${r.levelCurrent} → ${parseInt(r.levelCurrent)+1}</div>
+                        <div class="text-[11px] text-brand-600 font-semibold">${r.jenisTes} (${r.totalSoal} Soal)</div>
+                    </td>
+                    <td class="p-3.5 text-slate-500 text-[11px]">${r.tglDaftar}</td>
+                    <td class="p-3.5">${statusBadge}</td>
+                    <td class="p-3.5">${tokenJadwalInfo}</td>
+                    <td class="p-3.5">${nilaiInfo}</td>
+                    <td class="p-3.5 text-center space-x-1">
+                        ${r.status === 'MENUNGGU' ? `
+                            <button onclick="openApproveModal('${r.id}')" class="px-2.5 py-1.5 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 font-semibold text-[11px] transition">Setujui</button>
+                            <button onclick="openRejectModal('${r.id}')" class="px-2.5 py-1.5 bg-rose-600 text-white rounded-lg hover:bg-rose-700 font-semibold text-[11px] transition">Tolak</button>
+                        ` : `
+                            <button onclick="deleteRegistration('${r.id}')" class="px-2 py-1 text-slate-400 hover:text-rose-600 text-xs transition"><i class="fa-solid fa-trash"></i></button>
+                        `}
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function openApproveModal(id) {
+            const match = dbRegistrations.find(r => r.id === id);
+            if (!match) return;
+
+            document.getElementById('approve-id').value = id;
+            document.getElementById('approve-siswa-name').innerText = `${match.nama} (${match.kelas}) - ${match.jenisTes}`;
+            
+            // Auto-generate Token 6 Karakter Unik
+            const tokenGenerated = Math.random().toString(36).substring(2, 8).toUpperCase();
+            document.getElementById('approve-token').value = tokenGenerated;
+
+            // Preset Datetime (Start: Sekarang, End: 24 Jam lagi)
+            const now = new Date();
+            const tomorrow = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+            
+            document.getElementById('approve-start').value = now.toISOString().slice(0, 16);
+            document.getElementById('approve-end').value = tomorrow.toISOString().slice(0, 16);
+
+            document.getElementById('modal-approve').classList.remove('hidden');
+        }
+
+        function closeApproveModal() {
+            document.getElementById('modal-approve').classList.add('hidden');
+        }
+
+        function confirmApprove(e) {
+            e.preventDefault();
+            const id = document.getElementById('approve-id').value;
+            const token = document.getElementById('approve-token').value;
+            const start = document.getElementById('approve-start').value;
+            const end = document.getElementById('approve-end').value;
+
+            const idx = dbRegistrations.findIndex(r => r.id === id);
+            if (idx !== -1) {
+                dbRegistrations[idx].status = 'DISETUJUI';
+                dbRegistrations[idx].token = token;
+                dbRegistrations[idx].waktuMulai = start;
+                dbRegistrations[idx].waktuSelesai = end;
+                saveState();
+
+                closeApproveModal();
+                renderAdminTable();
+                showToast("Pendaftaran berhasil disetujui & token diterbitkan!", "success");
+            }
+        }
+
+        function openRejectModal(id) {
+            const match = dbRegistrations.find(r => r.id === id);
+            if (!match) return;
+
+            document.getElementById('reject-id').value = id;
+            document.getElementById('reject-siswa-name').innerText = `${match.nama} (${match.kelas})`;
+            document.getElementById('reject-reason').value = '';
+            document.getElementById('modal-reject').classList.remove('hidden');
+        }
+
+        function closeRejectModal() {
+            document.getElementById('modal-reject').classList.add('hidden');
+        }
+
+        function confirmReject(e) {
+            e.preventDefault();
+            const id = document.getElementById('reject-id').value;
+            const reason = document.getElementById('reject-reason').value.trim();
+
+            const idx = dbRegistrations.findIndex(r => r.id === id);
+            if (idx !== -1) {
+                dbRegistrations[idx].status = 'DITOLAK';
+                dbRegistrations[idx].alasanPenolakan = reason;
+                saveState();
+
+                closeRejectModal();
+                renderAdminTable();
+                showToast("Pendaftaran telah ditolak.", "error");
+            }
+        }
+
+        function deleteRegistration(id) {
+            if (confirm("Apakah Anda yakin ingin menghapus data pendaftaran ini?")) {
+                dbRegistrations = dbRegistrations.filter(r => r.id !== id);
+                saveState();
+                renderAdminTable();
+                showToast("Data pendaftaran berhasil dihapus");
+            }
+        }
+    </script>
+</body>
+</html>
