@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBT iWork - Tes Kenaikan Level iPad MA Ash-Shiddiiqi</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            200: '#99f6e4',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between">
+
+    <!-- Top Navigation Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('daftar')">
+                    <div class="bg-gradient-to-tr from-emerald-700 via-teal-600 to-teal-500 text-white p-2.5 rounded-xl shadow-md">
+                        <i class="fa-solid me-0 fa-tablet-screen-button text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-slate-900 text-lg leading-tight">CBT iWork Abel</h1>
+                        <p class="text-xs text-slate-500 font-medium">MA Ash-Shiddiiqi</p>
+                    </div>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-1 font-medium text-sm">
+                    <button onclick="switchTab('daftar')" id="nav-daftar" class="nav-btn px-4 py-2 rounded-lg text-slate-600 hover:text-brand-600 hover:bg-slate-100 transition">
+                        <i class="fa-solid fa-file-pen mr-1.5"></i>Pendaftaran
+                    </button>
+                    <button onclick="switchTab('status')" id="nav-status" class="nav-btn px-4 py-2 rounded-lg text-slate-600 hover:text-brand-600 hover:bg-slate-100 transition">
+                        <i class="fa-solid fa-magnifying-glass mr-1.5"></i>Cek Status & Token
+                    </button>
+                    <button onclick="switchTab('login-cbt')" id="nav-login-cbt" class="nav-btn px-4 py-2 rounded-lg text-slate-600 hover:text-brand-600 hover:bg-slate-100 transition">
+                        <i class="fa-solid fa-laptop-code mr-1.5"></i>Masuk Tes CBT
+                    </button>
+                    <button onclick="openAdminAuth()" id="nav-admin" class="nav-btn ml-2 px-3.5 py-2 rounded-lg bg-slate-900 text-white hover:bg-slate-800 transition font-medium shadow-sm">
+                        <i class="fa-solid fa-user-shield mr-1.5 text-amber-400"></i>Portal Admin
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-md text-slate-600 hover:bg-slate-100">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 bg-white px-4 pt-2 pb-4 space-y-2">
+            <button onclick="switchTab('daftar')" class="w-full text-left px-3 py-2.5 rounded-md font-medium text-slate-700 hover:bg-slate-100 flex items-center">
+                <i class="fa-solid fa-file-pen w-6 text-brand-600"></i>Pendaftaran
+            </button>
+            <button onclick="switchTab('status')" class="w-full text-left px-3 py-2.5 rounded-md font-medium text-slate-700 hover:bg-slate-100 flex items-center">
+                <i class="fa-solid fa-magnifying-glass w-6 text-brand-600"></i>Cek Status & Token
+            </button>
+            <button onclick="switchTab('login-cbt')" class="w-full text-left px-3 py-2.5 rounded-md font-medium text-slate-700 hover:bg-slate-100 flex items-center">
+                <i class="fa-solid fa-laptop-code w-6 text-brand-600"></i>Masuk Tes CBT
+            </button>
+            <button onclick="openAdminAuth()" class="w-full text-left px-3 py-2.5 rounded-md font-medium text-slate-900 bg-slate-100 flex items-center">
+                <i class="fa-solid fa-user-shield w-6 text-amber-500"></i>Portal Admin Waka
+            </button>
+        </div>
+    </header>
+
+    <!-- Notification Toast System -->
+    <div id="toast-container" class="fixed top-20 right-5 z-50 flex flex-col space-y-2 pointer-events-none"></div>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+
+        <!-- SECTION 1: FORM PENDAFTARAN -->
+        <section id="sec-daftar" class="tab-content">
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-gradient-to-br from-teal-900 via-teal-800 to-emerald-950 text-white rounded-3xl p-6 md:p-8 mb-8 shadow-xl relative overflow-hidden">
+                    <div class="relative z-10">
+                        <span class="inline-block px-3 py-1 rounded-full bg-white/20 text-xs font-semibold backdrop-blur-md mb-3">Tahun Ajaran 2026/2027</span>
+                        <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">Pendaftaran Tes Kenaikan Level iPad</h2>
+                        <p class="text-brand-100 text-sm md:text-base mt-2 max-w-xl">
+                            Mengacu pada Tata Tertib Penggunaan Alat Belajar (Abel) Smart Classroom IBS MA Ash-Shiddiiqi.
+                        </p>
+                    </div>
+                    <div class="absolute -right-8 -bottom-8 w-48 h-48 bg-white/10 rounded-full blur-2xl"></div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8">
+                    <form id="form-pendaftaran" onsubmit="handleDaftar(event)">
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Nama Lengkap Siswa <span class="text-rose-500">*</span></label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
+                                        <i class="fa-solid fa-user"></i>
+                                    </span>
+                                    <input type="text" id="reg-nama" required placeholder="Tulis sesuai nama resmi..." class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm font-medium transition">
+                                </div>
+                                <p class="text-xs text-slate-500 mt-1">Nama ini digunakan saat cek status dan login ujian CBT.</p>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-2">Kelas <span class="text-rose-500">*</span></label>
+                                    <select id="reg-kelas" required class="w-full py-3 px-3.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm font-medium bg-white">
+                                        <option value="">-- Pilih Kelas --</option>
+                                        <option value="X MA Putri">X MA Putri</option>
+                                        <option value="X MA Putra">X MA Putra</option>
+                                        <option value="XI MA Putri">XI MA Putri</option>
+                                        <option value="XI MA Putra">XI MA Putra</option>
+                                        <option value="XII MA Putri">XII MA Putri</option>
+                                        <option value="XII MA Putra">XII MA Putra</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-2">Level Penggunaan Saat Ini <span class="text-rose-500">*</span></label>
+                                    <select id="reg-level" required onchange="updateInfoLevel()" class="w-full py-3 px-3.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm font-medium bg-white">
+                                        <option value="">-- Pilih Level Saat Ini --</option>
+                                        <option value="2">Level 2 (Pengajuan Naik ke Level 3)</option>
+                                        <option value="3">Level 3 (Pengajuan Naik ke Level 4)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Dynamic Info Box -->
+                            <div id="info-jenis-tes" class="hidden p-4 rounded-xl bg-slate-50 border border-slate-200">
+                                <div class="flex items-start space-x-3">
+                                    <div class="p-2 bg-brand-100 text-brand-700 rounded-lg shrink-0 mt-0.5">
+                                        <i class="fa-solid fa-circle-info text-base"></i>
+                                    </div>
+                                    <div class="text-xs text-slate-600 space-y-1">
+                                        <h4 class="font-bold text-slate-800 text-sm" id="info-tes-title">Detail Kenaikan Level</h4>
+                                        <p id="info-tes-desc"></p>
+                                        <div class="pt-1 flex flex-wrap gap-2 text-slate-700 font-medium" id="info-tes-badges"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900">
+                                <label class="flex items-start space-x-3 cursor-pointer">
+                                    <input type="checkbox" id="reg-agree" required class="mt-0.5 h-4 w-4 rounded border-amber-300 text-brand-600 focus:ring-brand-500">
+                                    <span class="leading-relaxed">
+                                        Saya menyatakan telah membaca, memahami, dan menyetujui seluruh ketentuan dalam 
+                                        <strong class="font-semibold">Tata Tertib Penggunaan Alat Belajar (Abel) Smart Classroom IBS MA Ash-Shiddiiqi</strong> dan bersedia mengikuti ujian secara jujur.
+                                    </span>
+                                </label>
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 px-4 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl shadow-md transition flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span>Kirim Pengajuan Pendaftaran</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: CEK STATUS PENDAFTARAN -->
+        <section id="sec-status" class="tab-content hidden">
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 mb-8">
+                    <h2 class="text-xl font-bold text-slate-900 mb-1 flex items-center">
+                        <i class="fa-solid fa-magnifying-glass text-brand-600 mr-2.5"></i>Cek Status Pendaftaran & Token Ujian
+                    </h2>
+                    <p class="text-slate-500 text-sm mb-6">Masukkan Nama dan Kelas sesuai data pendaftaran Anda.</p>
+
+                    <form onsubmit="handleCekStatus(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Nama Lengkap Siswa</label>
+                                <input type="text" id="cek-nama" required placeholder="Nama persis saat mendaftar..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Kelas</label>
+                                <select id="cek-kelas" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500">
+                                    <option value="">-- Pilih Kelas --</option>
+                                    <option value="X MA Putri">X MA Putri</option>
+                                    <option value="X MA Putra">X MA Putra</option>
+                                    <option value="XI MA Putri">XI MA Putri</option>
+                                    <option value="XI MA Putra">XI MA Putra</option>
+                                    <option value="XII MA Putri">XII MA Putri</option>
+                                    <option value="XII MA Putra">XII MA Putra</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="w-full md:w-auto px-6 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-xl text-sm transition">
+                            Cek Status Sekarang
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Hasil Cek Status Card (Dynamic) -->
+                <div id="status-result-card" class="hidden bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8">
+                    <!-- Dynamic Content by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: LOGIN CBT (MASUKKAN TOKEN) -->
+        <section id="sec-login-cbt" class="tab-content hidden">
+            <div class="max-w-xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-lg border border-slate-200 p-6 md:p-8">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-brand-50 text-brand-600 rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-inner">
+                            <i class="fa-solid fa-key text-2xl"></i>
+                        </div>
+                        <h2 class="text-xl font-extrabold text-slate-900">Masuk Pelaksanaan Tes CBT</h2>
+                        <p class="text-slate-500 text-xs mt-1">Pastikan jadwal ujian telah aktif dan data sesuai pendaftaran.</p>
+                    </div>
+
+                    <form onsubmit="handleStartTest(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Nama Lengkap Peserta</label>
+                            <input type="text" id="cbt-nama" required placeholder="Nama lengkap..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Kelas</label>
+                            <select id="cbt-kelas" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500">
+                                <option value="">-- Pilih Kelas --</option>
+                                <option value="X MA Putri">X MA Putri</option>
+                                <option value="X MA Putra">X MA Putra</option>
+                                <option value="XI MA Putri">XI MA Putri</option>
+                                <option value="XI MA Putra">XI MA Putra</option>
+                                <option value="XII MA Putri">XII MA Putri</option>
+                                <option value="XII MA Putra">XII MA Putra</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Kode Token Ujian (6 Karakter)</label>
+                            <input type="text" id="cbt-token" maxlength="6" required placeholder="Contoh: X7K9P2" class="w-full px-4 py-3 rounded-xl border-2 border-brand-200 focus:border-brand-500 font-mono text-center tracking-widest text-lg uppercase font-bold text-slate-800">
+                        </div>
+
+                        <div class="pt-2">
+                            <button type="submit" class="w-full py-3.5 px-4 bg-gradient-to-r from-teal-700 to-emerald-600 hover:from-teal-800 hover:to-emerald-700 text-white font-bold rounded-xl shadow-lg transition flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-play"></i>
+                                <span>Mulai Kerjakan Tes CBT</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: INTERFACE UJIAN CBT ACTIVE -->
+        <section id="sec-cbt-active" class="tab-content hidden">
+            <!-- Header Bar CBT -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4 sticky top-20 z-30">
+                <div>
+                    <span id="cbt-badge-jenis" class="px-2.5 py-1 rounded-md text-xs font-bold bg-brand-100 text-brand-700">Tes Dasar</span>
+                    <h3 id="cbt-peserta-info" class="font-bold text-slate-900 text-base mt-1">Ahmad Zaky (X IPA 1)</h3>
+                </div>
+
+                <!-- Timer & Finish Button -->
+                <div class="flex items-center space-x-4">
+                    <div class="bg-slate-900 text-white px-4 py-2 rounded-xl flex items-center space-x-2 font-mono">
+                        <i class="fa-regular fa-clock text-amber-400"></i>
+                        <span id="cbt-timer" class="font-bold text-lg">00:00:00</span>
+                    </div>
+                    <button onclick="confirmSubmitTest()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold rounded-xl shadow transition flex items-center space-x-1.5">
+                        <i class="fa-solid fa-check-double"></i>
+                        <span>Selesaikan Tes</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- CBT Layout Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                <!-- Question Area (Left 3 cols) -->
+                <div class="lg:col-span-3 space-y-6">
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8">
+                        <!-- Top Info Soal -->
+                        <div class="flex justify-between items-center pb-4 mb-4 border-b border-slate-100">
+                            <span class="text-sm font-bold text-slate-500" id="cbt-soal-number">Soal Nomor 1</span>
+                            <span id="cbt-soal-app" class="px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-700">Aplikasi Pages</span>
+                        </div>
+
+                        <!-- Question Text -->
+                        <div class="mb-6">
+                            <p id="cbt-question-text" class="text-base md:text-lg font-semibold text-slate-800 leading-relaxed"></p>
+                        </div>
+
+                        <!-- Options List -->
+                        <div id="cbt-options-container" class="space-y-3">
+                            <!-- Options injected by JS -->
+                        </div>
+
+                        <!-- Question Actions Footer -->
+                        <div class="mt-8 pt-4 border-t border-slate-100 flex flex-wrap justify-between items-center gap-3">
+                            <button id="btn-prev-soal" onclick="navigateSoal(-1)" class="px-4 py-2 rounded-xl border border-slate-300 font-semibold text-slate-600 hover:bg-slate-100 text-sm transition">
+                                <i class="fa-solid fa-arrow-left mr-1.5"></i>Sebelumnya
+                            </button>
+
+                            <label class="flex items-center space-x-2 cursor-pointer bg-amber-50 px-3 py-2 rounded-xl border border-amber-200 text-xs font-semibold text-amber-900">
+                                <input type="checkbox" id="cbt-ragu-checkbox" onchange="toggleRaguRagu()" class="rounded border-amber-300 text-amber-500 focus:ring-amber-400">
+                                <span>Ragu-ragu / Tandai</span>
+                            </label>
+
+                            <button id="btn-next-soal" onclick="navigateSoal(1)" class="px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm transition">
+                                Selanjutnya<i class="fa-solid fa-arrow-right ml-1.5"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Grid (Right 1 col) -->
+                <div class="lg:col-span-1">
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sticky top-44">
+                        <h4 class="font-bold text-slate-900 text-sm mb-3">Navigasi Nomor Soal</h4>
+                        <div id="cbt-nav-grid" class="grid grid-cols-5 gap-2 max-h-72 overflow-y-auto custom-scrollbar p-1">
+                            <!-- Injected Grid Buttons -->
+                        </div>
+
+                        <div class="mt-4 pt-4 border-t border-slate-100 text-xs space-y-1.5 text-slate-600">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-3.5 h-3.5 rounded bg-brand-600 inline-block"></span>
+                                <span>Sudah dijawab</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="w-3.5 h-3.5 rounded bg-amber-400 inline-block"></span>
+                                <span>Ragu-ragu</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="w-3.5 h-3.5 rounded bg-slate-100 border border-slate-300 inline-block"></span>
+                                <span>Belum dijawab</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: HASIL TES & TRANSKRIP -->
+        <section id="sec-hasil" class="tab-content hidden">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <!-- Banner Score -->
+                <div id="hasil-banner" class="rounded-3xl p-6 md:p-8 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div>
+                        <span id="hasil-status-badge" class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-white/20">Status</span>
+                        <h2 id="hasil-status-title" class="text-3xl font-extrabold mt-2">SELAMAT! ANDA LOLOS</h2>
+                        <p id="hasil-status-subtitle" class="text-sm opacity-90 mt-1">Level Abel Anda resmi naik sesuai pengajuan.</p>
+                    </div>
+
+                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20 shrink-0 min-w-[160px]">
+                        <span class="text-xs uppercase font-bold opacity-80">Nilai Akhir</span>
+                        <div id="hasil-score-display" class="text-5xl font-extrabold my-1">87.5</div>
+                        <span class="text-xs opacity-90">KKM: 75.0</span>
+                    </div>
+                </div>
+
+                <!-- Rincian Identitas & Statistik -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div class="p-3 bg-slate-50 rounded-xl">
+                        <span class="text-xs text-slate-500 font-medium">Nama Peserta</span>
+                        <p id="hasil-nama" class="font-bold text-slate-800 text-sm truncate">-</p>
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded-xl">
+                        <span class="text-xs text-slate-500 font-medium">Jenis Ujian</span>
+                        <p id="hasil-jenis" class="font-bold text-slate-800 text-sm">-</p>
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded-xl">
+                        <span class="text-xs text-slate-500 font-medium">Jawaban Benar</span>
+                        <p id="hasil-benar" class="font-bold text-emerald-600 text-sm">-</p>
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded-xl">
+                        <span class="text-xs text-slate-500 font-medium">Waktu Pengerjaan</span>
+                        <p id="hasil-durasi" class="font-bold text-slate-800 text-sm">-</p>
+                    </div>
+                </div>
+
+                <!-- Rincian Pembahasan Soal -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6">
+                    <h3 class="font-bold text-slate-900 text-base mb-4 flex items-center">
+                        <i class="fa-solid fa-list-check text-brand-600 mr-2"></i>Evaluasi Rincian Jawaban Per Soal
+                    </h3>
+                    <div id="hasil-review-list" class="space-y-4 max-h-96 overflow-y-auto custom-scrollbar pr-2">
+                        <!-- Evaluasi Injected by JS -->
+                    </div>
+                </div>
+
+                <div class="flex justify-center">
+                    <button onclick="switchTab('daftar')" class="px-6 py-3 bg-slate-900 text-white font-bold rounded-xl text-sm hover:bg-slate-800 transition">
+                        Kembali ke Halaman Utama
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: PORTAL ADMIN WAKA KESISWAAN (PROTECTED BY PASSWORD) -->
+        <section id="sec-admin" class="tab-content hidden">
+            <div class="space-y-6">
+                <!-- Admin Header -->
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900 flex items-center">
+                            <i class="fa-solid fa-user-shield text-amber-500 mr-2.5"></i>Panel Waka Kesiswaan / Edutech
+                        </h2>
+                        <p class="text-slate-500 text-xs mt-1">Persetujuan Pendaftaran Tes Kenaikan Level Abel & Penerbitan Token Ujian MA Ash-Shiddiiqi.</p>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-xs font-semibold px-3 py-1.5 bg-slate-100 rounded-lg text-slate-600">
+                            Total Pengajuan: <strong id="admin-count-total" class="text-slate-900">0</strong>
+                        </span>
+                        <button onclick="openChangePasswordModal()" class="px-3 py-1.5 bg-brand-50 hover:bg-brand-100 text-brand-700 font-semibold rounded-lg text-xs transition">
+                            <i class="fa-solid fa-key mr-1"></i>Ubah Password Admin
+                        </button>
+                        <button onclick="adminLogout()" class="px-3 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold rounded-lg text-xs transition">
+                            <i class="fa-solid fa-right-from-bracket mr-1"></i>Keluar Admin
+                        </button>
+                        <button onclick="resetAllDemoData()" class="px-3 py-1.5 bg-rose-50 text-rose-600 hover:bg-rose-100 font-semibold rounded-lg text-xs transition">
+                            <i class="fa-solid fa-rotate-left mr-1"></i>Reset Demo Data
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pendaftaran Management Table -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="p-4 bg-slate-50 border-b border-slate-200 flex justify-between items-center">
+                        <h3 class="font-bold text-slate-800 text-sm">Daftar Pengajuan Siswa</h3>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="bg-slate-100 text-slate-600 font-semibold uppercase tracking-wider">
+                                    <th class="p-3.5">Nama & Kelas</th>
+                                    <th class="p-3.5">Level & Jenis Tes</th>
+                                    <th class="p-3.5">Tgl Pengajuan</th>
+                                    <th class="p-3.5">Status</th>
+                                    <th class="p-3.5">Token & Jadwal Ujian</th>
+                                    <th class="p-3.5">Nilai CBT</th>
+                                    <th class="p-3.5 text-center">Aksi Admin</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-table-body" class="divide-y divide-slate-200 font-medium">
+                                <!-- Injected by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal Admin Authentication (Login Password Admin) -->
+    <div id="modal-admin-login" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-100">
+            <div class="text-center mb-5">
+                <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center mx-auto mb-2 shadow-inner">
+                    <i class="fa-solid fa-lock text-xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900">Autentikasi Admin</h3>
+                <p class="text-xs text-slate-500 mt-0.5">Hanya Waka Kesiswaan/Edutech MA Ash-Shiddiiqi yang dapat mengakses portal ini.</p>
+            </div>
+
+            <form onsubmit="handleAdminLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Password Admin</label>
+                    <div class="relative">
+                        <input type="password" id="admin-password-input" required placeholder="Masukkan password admin..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-amber-500">
+                    </div>
+                </div>
+
+                <div class="flex space-x-2 pt-2">
+                    <button type="button" onclick="closeAdminAuthModal()" class="w-1/2 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-xs transition">
+                        Batal
+                    </button>
+                    <button type="submit" class="w-1/2 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-xl text-xs transition shadow-md">
+                        Masuk Admin
+                    </button>
+                </div>
+                <div class="text-center pt-1">
+                    <button type="button" onclick="resetAdminPasswordToDefault()" class="text-[11px] text-slate-400 hover:text-brand-600 underline">
+                        Lupa / Reset Password ke Default (admin123)
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Admin Setujui (Set Token & Jadwal) -->
+    <div id="modal-approve" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-100">
+            <h3 class="text-lg font-bold text-slate-900 mb-2">Setujui Pendaftaran Tes</h3>
+            <p class="text-xs text-slate-500 mb-4" id="approve-siswa-name">Ahmad Zaky (X IPA 1)</p>
+
+            <form onsubmit="confirmApprove(event)" class="space-y-4 text-xs">
+                <input type="hidden" id="approve-id">
+                
+                <div>
+                    <label class="block font-semibold text-slate-700 mb-1">Kode Token (Otomatis)</label>
+                    <input type="text" id="approve-token" readonly class="w-full px-3 py-2 bg-slate-100 border border-slate-300 font-mono font-bold text-sm text-brand-700 rounded-lg">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-semibold text-slate-700 mb-1">Waktu Mulai Ujian</label>
+                        <input type="datetime-local" id="approve-start" required class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-slate-700 mb-1">Waktu Selesai Ujian</label>
+                        <input type="datetime-local" id="approve-end" required class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500">
+                    </div>
+                </div>
+
+                <div class="flex justify-end space-x-2 pt-4 border-t border-slate-100">
+                    <button type="button" onclick="closeApproveModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl transition">Batal</button>
+                    <button type="submit" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl shadow transition">Terbitkan Token & Setujui</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Admin Tolak -->
+    <div id="modal-reject" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-100">
+            <h3 class="text-lg font-bold text-slate-900 mb-2">Tolak Pendaftaran Tes</h3>
+            <p class="text-xs text-slate-500 mb-4" id="reject-siswa-name">Siswa</p>
+
+            <form onsubmit="confirmReject(event)" class="space-y-4 text-xs">
+                <input type="hidden" id="reject-id">
+                
+                <div>
+                    <label class="block font-semibold text-slate-700 mb-1">Alasan Penolakan</label>
+                    <textarea id="reject-reason" required rows="3" placeholder="Contoh: Belum memenuhi syarat kelakuan baik..." class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500"></textarea>
+                </div>
+
+                <div class="flex justify-end space-x-2 pt-4 border-t border-slate-100">
+                    <button type="button" onclick="closeRejectModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl transition">Batal</button>
+                    <button type="submit" class="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white font-semibold rounded-xl shadow transition">Simpan Penolakan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Custom Alert/Confirm Modal (Substitusi Alert) -->
+    <div id="custom-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl text-center space-y-4">
+            <div id="modal-icon" class="w-12 h-12 rounded-full mx-auto flex items-center justify-center text-xl"></div>
+            <div>
+                <h4 id="modal-title" class="font-bold text-slate-900 text-base">Informasi</h4>
+                <p id="modal-message" class="text-xs text-slate-600 mt-1 leading-relaxed"></p>
+            </div>
+            <div id="modal-actions" class="flex justify-center space-x-2 pt-2">
+                <!-- Buttons injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500 mt-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <p class="font-semibold text-slate-700">MA ASH-SHIDDIIQI - IBS Smart Classroom</p>
+            <p class="mt-1">Sistem CBT Tes Kenaikan Level Penggunaan Alat Belajar (Abel) iWork &copy; 2026</p>
+        </div>
+    </footer>
+
+    <!-- FIREBASE INITIALIZATION SCRIPT -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, doc, setDoc, getDocs, onSnapshot, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Global Firebase Configuration & State
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'cbt-ma-ashshiddiiqi';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' 
+            ? JSON.parse(__firebase_config) 
+            : {
+                apiKey: "AIzaSyDemoConfigKeyForCBTiWork1234567",
+                authDomain: "cbt-ma-ashshiddiiqi.firebaseapp.com",
+                projectId: "cbt-ma-ashshiddiiqi",
+                storageBucket: "cbt-ma-ashshiddiiqi.appspot.com",
+                messagingSenderId: "123456789012",
+                appId: "1:123456789012:web:abcdef1234567890"
+            };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        window.firebaseDB = db;
+        window.firebaseAppId = appId;
+        window.isCloudConnected = false;
+
+        // Path koleksi data publik sesuai aturan strictly `/artifacts/{appId}/public/data/{collectionName}`
+        const getPublicCollectionPath = (collName) => `artifacts/${appId}/public/data/${collName}`;
+
+        // Inisialisasi Otentikasi Firebase
+        async function initAuth() {
+            try {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+            } catch (err) {
+                console.warn("Firebase Auth fallback to local mode:", err);
+            }
+        }
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                window.isCloudConnected = true;
+                listenCloudData();
+            }
+        });
+
+        // Real-time Cloud Listener
+        function listenCloudData() {
+            if (!auth.currentUser) return;
+            const regsRef = collection(db, 'artifacts', appId, 'public', 'data', 'registrations');
+            
+            onSnapshot(regsRef, (snapshot) => {
+                const cloudData = [];
+                snapshot.forEach((doc) => {
+                    cloudData.push({ id: doc.id, ...doc.data() });
+                });
+                
+                if (cloudData.length > 0) {
+                    window.dbRegistrations = cloudData;
+                    localStorage.setItem('cbt_iwork_regs', JSON.stringify(cloudData));
+                    if (typeof renderAdminTable === 'function') renderAdminTable();
+                }
+            }, (error) => {
+                console.error("Cloud Sync Error:", error);
+            });
+        }
+
+        // Helper global untuk menyimpan data ke Cloud Firestore
+        window.saveRegistrationToCloud = async function(regData) {
+            if (!auth.currentUser || !window.isCloudConnected) {
+                console.log("Saving locally (Offline mode)");
+                return;
+            }
+            try {
+                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'registrations', regData.id);
+                await setDoc(docRef, regData, { merge: true });
+            } catch (e) {
+                console.error("Gagal simpan ke Cloud:", e);
+            }
+        };
+
+        initAuth();
+    </script>
+
+    <!-- JAVASCRIPT APP LOGIC -->
+    <script>
+        // Synchronize helper: Simpan baik di localStorage maupun Firestore Cloud
+        function saveState() {
+            localStorage.setItem('cbt_iwork_regs', JSON.stringify(dbRegistrations));
+            if (window.saveRegistrationToCloud) {
+                dbRegistrations.forEach(reg => {
+                    window.saveRegistrationToCloud(reg);
+                });
+            }
+        }
+
+        function closeAdminAuthModal() {
+            document.getElementById('modal-admin-login').classList.add('hidden');
+        }
+
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            const passwordEntered = document.getElementById('admin-password-input').value.trim();
+            const validPassword = getAdminPassword().trim();
+
+            if (passwordEntered === validPassword) {
+                isAdminLoggedIn = true;
+                closeAdminAuthModal();
+                showToast("Berhasil login sebagai Admin Waka Kesiswaan", "success");
+                switchTab('admin');
+            } else {
+                showCustomAlert("Akses Ditolak", "Password admin salah. Password bawaan domain baru adalah: admin123");
+            }
+        }
+
+        function resetAdminPasswordToDefault() {
+            localStorage.setItem('cbt_admin_password', 'admin123');
+            showCustomAlert("Password Direset", "Password admin telah dikembalikan ke default: admin123");
+        }
+
+        function openChangePasswordModal() {
+<!-- ... existing code -->
