@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts: Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Firebase SDK (Version 9+) -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -451,7 +454,7 @@
 
     </main>
 
-    <!-- Modal Admin Auth -->
+    <!-- Modal Admin Auth (TIDAK ADA TOMBOL RESET / HINT DEFAULT) -->
     <div id="modal-admin-login" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-100">
             <div class="text-center mb-5">
@@ -459,7 +462,7 @@
                     <i class="fa-solid fa-lock text-xl"></i>
                 </div>
                 <h3 class="text-lg font-bold text-slate-900">Autentikasi Admin</h3>
-                <p class="text-xs text-slate-500 mt-0.5">Hanya Waka Kesiswaan/Edutech MA Ash-Shiddiiqi yang dapat mengakses portal ini.</p>
+                <p class="text-xs text-slate-500 mt-0.5">Portal khusus Waka Kesiswaan/Edutech MA Ash-Shiddiiqi.</p>
             </div>
 
             <form onsubmit="handleAdminLogin(event)" class="space-y-4">
@@ -474,11 +477,6 @@
                     </button>
                     <button type="submit" class="w-1/2 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-xl text-xs transition shadow-md">
                         Masuk Admin
-                    </button>
-                </div>
-                <div class="text-center pt-1">
-                    <button type="button" onclick="resetAdminPasswordToDefault()" class="text-[11px] text-slate-400 hover:text-brand-600 underline">
-                        Lupa / Reset Password ke Default (admin123)
                     </button>
                 </div>
             </form>
@@ -583,6 +581,26 @@
 
     <!-- JAVASCRIPT CORE LOGIC -->
     <script>
+        // Optional Firebase Configuration (Auto sync across devices if configured)
+        const firebaseConfig = {
+            apiKey: "AIzaSyYOUR_API_KEY_HERE",
+            authDomain: "cbt-ma-ashshiddiiqi.firebaseapp.com",
+            projectId: "cbt-ma-ashshiddiiqi",
+            storageBucket: "cbt-ma-ashshiddiiqi.appspot.com",
+            messagingSenderId: "1234567890",
+            appId: "1:1234567890:web:abcdef123456"
+        };
+
+        let dbFirestore = null;
+        try {
+            if (firebase.apps.length === 0) {
+                firebase.initializeApp(firebaseConfig);
+            }
+            dbFirestore = firebase.firestore();
+        } catch (err) {
+            console.log("Firebase tidak aktif, menggunakan penyimpanan localStorage.");
+        }
+
         // Data Bank Soal Bawaan iWork & iPad Tools
         const BANK_SOAL = {
             pages: [
@@ -653,13 +671,35 @@
             return localStorage.getItem('cbt_admin_password') || 'admin123';
         }
 
+        function saveRegistrationToCloud(regData) {
+            if (dbFirestore) {
+                dbFirestore.collection("registrations").doc(regData.id).set(regData, { merge: true })
+                    .catch(err => console.error("Firestore sync error:", err));
+            }
+        }
+
         function saveState() {
             localStorage.setItem('cbt_iwork_regs', JSON.stringify(dbRegistrations));
-            if (window.saveRegistrationToCloud) {
-                dbRegistrations.forEach(reg => {
-                    window.saveRegistrationToCloud(reg);
+            dbRegistrations.forEach(reg => {
+                saveRegistrationToCloud(reg);
+            });
+        }
+
+        // Listen for Realtime Firestore Updates
+        if (dbFirestore) {
+            dbFirestore.collection("registrations").onSnapshot((snapshot) => {
+                const cloudRegs = [];
+                snapshot.forEach((doc) => {
+                    cloudRegs.push(doc.data());
                 });
-            }
+                if (cloudRegs.length > 0) {
+                    dbRegistrations = cloudRegs;
+                    localStorage.setItem('cbt_iwork_regs', JSON.stringify(dbRegistrations));
+                    if (isAdminLoggedIn) {
+                        renderAdminTable();
+                    }
+                }
+            });
         }
 
         // Navigation Tab Handler
@@ -1275,13 +1315,8 @@
                 showToast("Berhasil login sebagai Admin Waka Kesiswaan", "success");
                 switchTab('admin');
             } else {
-                showCustomAlert("Akses Ditolak", "Password admin salah. Password bawaan default: admin123");
+                showCustomAlert("Akses Ditolak", "Password admin yang Anda masukkan salah.", "fa-circle-xmark text-rose-600 bg-rose-50");
             }
-        }
-
-        function resetAdminPasswordToDefault() {
-            localStorage.setItem('cbt_admin_password', 'admin123');
-            showCustomAlert("Password Direset", "Password admin telah dikembalikan ke default: admin123");
         }
 
         function openChangePasswordModal() {
